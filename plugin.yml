@@ -1,0 +1,7 @@
+name: Hub
+author: Benliam12
+version: 1.0.1
+main: ca.benliam12.hub.Hub
+command:
+   sethub:
+   hub:
