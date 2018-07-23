@@ -15,22 +15,34 @@ public class TeleportUtil
     private SettingManager sm = SettingManager.getInstance();
     private Location hub;
 
+    /**
+     * Setup hub
+     */
     public void setup()
     {
         if(this.getLocation("Hub", sm.getConfig("config")) == null)
         {
-            this.setConfigLocation("Hub", "config", sm.getConfig("config"), new Location(Bukkit.getWorld("world"),0,0,0));
+            /* Default location if no location set*/
+            this.setConfigLocation("Hub", "config", sm.getConfig("config"), new Location(Bukkit.getWorld("world"),0,100,0));
         }
 
         this.hub = this.getLocation("Hub", sm.getConfig("config"));
     }
 
+    /**
+     * Set new Hub location
+     * @param location New Hub location
+     */
     public void setHub(Location location)
     {
         this.setConfigLocation("Hub", "config", sm.getConfig("config"), location);
         this.hub = location;
     }
 
+    /**
+     * Teleport player to hub
+     * @param player Player to teleport.
+     */
     public void toHub(Player player)
     {
         player.teleport(this.hub);
