@@ -80,7 +80,8 @@ public class SettingManager
      */
     public void setup()
     {
-
+        createDirectory("plugins/Hub");
+        addConfig("config", "plugins/Hub");
     }
     /*
      * Configuration interactions
