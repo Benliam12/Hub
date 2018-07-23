@@ -26,10 +26,11 @@ public class HubCommand implements CommandExecutor
                 sender.sendMessage("[Hub] Unknown Command !");
                 return true;
             }
-
-            Hub.toHub(player);
-            player.sendMessage(ChatColor.GREEN + "Teleported to HUB");
-
+            if(player.hasPermission("hub.go"))
+            {
+                Hub.toHub(player);
+                player.sendMessage(ChatColor.GREEN + "Teleported to HUB");
+            }
         }
         else if (label.equalsIgnoreCase("sethub"))
         {
@@ -39,7 +40,7 @@ public class HubCommand implements CommandExecutor
                 return true;
             }
 
-            if(player.isOp())
+            if(player.isOp() || player.hasPermission("hub.set"))
             {
                 TeleportUtil.getInstance().setHub(player.getLocation());
                 player.sendMessage(ChatColor.GREEN + "Hub set");
