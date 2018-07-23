@@ -4,6 +4,6 @@ version: 1.1
 main: ca.benliam12.hub.Hub
 commands :
   sethub:
-    description: Set the hub
+    description: Set the hub (You better have the permission :D)
   hub:
     description: Go to hub
