@@ -23,6 +23,23 @@ public class HubCommand implements CommandExecutor
         {
             if(args.length != 0)
             {
+                if(args.length == 1)
+                {
+                    if(args[0].equalsIgnoreCase("debug"))
+                    {
+                        //Toggles Debug
+                        if(player.isOp())
+                        {
+                            TeleportUtil.getInstance().toggleDebug(player);
+                        }
+                        else
+                        {
+                            player.sendMessage(ChatColor.GREEN + "[Hub] " + ChatColor.RED + "You don't have the permission to do so!");
+                        }
+
+                    }
+                    return true;
+                }
                 sender.sendMessage("[Hub] Unknown Command !");
                 return true;
             }

@@ -24,6 +24,7 @@ public class Hub extends JavaPlugin
 
     public void onDisable()
     {
+        TeleportUtil.getInstance().end();
         SettingManager.getInstance().clear();
     }
 

@@ -1,6 +1,8 @@
 package ca.benliam12.hub.Utils;
 
+import ca.benliam12.hub.Hub;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,6 +17,8 @@ public class TeleportUtil
     private SettingManager sm = SettingManager.getInstance();
     private Location hub;
 
+    private boolean debug = false;
+
     /**
      * Setup hub
      */
@@ -26,7 +30,42 @@ public class TeleportUtil
             this.setConfigLocation("Hub", "config", sm.getConfig("config"), new Location(Bukkit.getWorld("world"),0,100,0));
         }
 
+        try
+        {
+            this.debug = sm.getConfig("config").getBoolean("debug");
+        }
+        catch (NullPointerException e)
+        {
+            this.debug = true;
+            FileConfiguration config = sm.getConfig("config");
+            config.set("debug", true);
+            sm.saveConfig("config", config);
+
+            e.printStackTrace();
+        }
+
         this.hub = this.getLocation("Hub", sm.getConfig("config"));
+    }
+
+    public void end()
+    {
+        FileConfiguration config = sm.getConfig("config");
+        config.set("debug", this.debug);
+        sm.saveConfig("config", config);
+    }
+
+    public void toggleDebug(Player player)
+    {
+        if(this.debug)
+        {
+            this.debug = false;
+        }
+        else
+        {
+            this.debug = true;
+        }
+
+        player.sendMessage(ChatColor.GREEN + "[Hub] " + ChatColor.YELLOW + "Set debug mode on : " + ChatColor.RESET + this.debug);
     }
 
     /**
@@ -45,6 +84,11 @@ public class TeleportUtil
      */
     public void toHub(Player player)
     {
+        if(this.debug)
+        {
+            Hub.log.info(this.hub.toString());
+        }
+
         player.teleport(this.hub);
     }
 
