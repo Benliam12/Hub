@@ -86,7 +86,7 @@ public class TeleportUtil
     {
         if(this.debug)
         {
-            Hub.log.info(this.hub.toString());
+            Hub.log.info("[Hub Debug] " + this.hub.toString());
         }
 
         player.teleport(this.hub);
