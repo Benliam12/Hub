@@ -28,7 +28,7 @@ public class HubCommand implements CommandExecutor
                     if(args[0].equalsIgnoreCase("debug"))
                     {
                         //Toggles Debug
-                        if(player.isOp())
+                        if(player.hasPermission("hub.toggle"))
                         {
                             TeleportUtil.getInstance().toggleDebug(player);
                         }
@@ -57,7 +57,7 @@ public class HubCommand implements CommandExecutor
                 return true;
             }
 
-            if(player.isOp() || player.hasPermission("hub.set"))
+            if(player.hasPermission("hub.set"))
             {
                 TeleportUtil.getInstance().setHub(player.getLocation());
                 player.sendMessage(ChatColor.GREEN + "[Hub] Hub set");

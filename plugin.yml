@@ -2,8 +2,22 @@ name: Hub
 author: Benliam12
 version: 1.1.1
 main: ca.benliam12.hub.Hub
+softdepend: [Multiverse-Core]
 commands :
   sethub:
     description: Set the hub (You better have the permission :D)
+    usage: /<command>
   hub:
     description: Go to hub
+    usage: /<command>
+
+permissions:
+  hub.set:
+    description: Allow player to sethub
+    default: op
+  hub.go:
+    description: Allow player to go to Hub
+    default: true
+  hub.toggle:
+    description: Toggles debug mod
+    default: op

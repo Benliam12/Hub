@@ -54,6 +54,27 @@ public class TeleportUtil
         sm.saveConfig("config", config);
     }
 
+    public void reload()
+    {
+        if(this.hub.getWorld() == null)
+        {
+            try
+            {
+                this.hub = this.getLocation("Hub", sm.getConfig("config"));
+                Hub.log.info("[Hub] reloaded");
+            }
+            catch (NullPointerException e)
+            {
+                this.debug = true;
+                FileConfiguration config = sm.getConfig("config");
+                config.set("debug", true);
+                sm.saveConfig("config", config);
+
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void toggleDebug(Player player)
     {
         if(this.debug)
@@ -88,7 +109,7 @@ public class TeleportUtil
         {
             Hub.log.info("[Hub Debug] " + this.hub.toString());
         }
-
+        this.reload();
         player.teleport(this.hub);
     }
 
